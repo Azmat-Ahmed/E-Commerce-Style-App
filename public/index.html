@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DevOps Shop</title>
+  <style>
+    body { font-family: Arial; margin: 0; background: #f4f4f4; }
+    nav { background: #111; color: white; padding: 15px; font-size: 20px; }
+    .container { padding: 20px; }
+    .card { background: white; padding: 15px; margin: 10px 0; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <nav>🛒 DevOps E-Commerce</nav>
+  <div class="container">
+    <h2>Products</h2>
+    <div id="products"></div>
+  </div>
+
+<script>
+fetch('/api/products')
+  .then(res => res.json())
+  .then(data => {
+    const div = document.getElementById('products');
+    data.forEach(p => {
+      div.innerHTML += `<div class="card"><h3>${p.name}</h3><p>${p.price}</p></div>`;
+    });
+  });
+</script>
+</body>
+</html>
