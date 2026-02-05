@@ -13,14 +13,15 @@ pipeline {
 
     stage('Build Docker Image') {
       steps {
-        sh 'docker build -t $DOCKER_IMAGE:$BUILD_NUMBER .'
+        sh 'docker build -t azmatahmed/devops-shop:$BUILD_NUMBER .
+'
       }
     }
 
     stage('Push to DockerHub') {
       steps {
         withDockerRegistry([credentialsId: 'dockerhub-creds', url: '']) {
-          sh 'docker push $DOCKER_IMAGE:$BUILD_NUMBER'
+          sh 'docker push azmatahmed/devops-shop:$BUILD_NUMBER'
         }
       }
     }
